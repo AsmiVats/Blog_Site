@@ -15,13 +15,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
+//to store posts
 let posts =[];
 
-
+//render home page
 app.get("/",function(req,res){
 
   res.render("home", {homeStartingContent: homeStartingContent, posts:posts});
 })
+
 
 
 app.get("/contact",function(req,res){
@@ -40,6 +42,7 @@ app.get("/compose",function(req,res){
   res.render("compose");
 })
 
+//get each post
 app.get("/posts/:topic",function(req,res){
   
   posts.forEach((function(post){
@@ -52,7 +55,7 @@ app.get("/posts/:topic",function(req,res){
 
 })
 
-
+//compose post
 app.post("/compose",function(req,res){
   
   const post = {
